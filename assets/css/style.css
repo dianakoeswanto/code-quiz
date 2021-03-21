@@ -1,0 +1,33 @@
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: solid;
+    border-bottom-width: 0.5px;
+}
+
+section {
+    padding: 20px;
+    line-height:1.5em;
+}
+
+#label {
+    font-weight: bold;
+}
+
+button {
+    margin-top: 10px;
+    padding: 5px;
+}
+
+li {
+    list-style-type:none
+}
+
+.answers {
+    padding-bottom: 20px;
+    border-bottom-style: dotted;
+    border-bottom-width: 0.5px;
+}
+
