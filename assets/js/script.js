@@ -65,7 +65,9 @@ var quizzes = [
 ]
 function startQuiz() {
     toggleWelcomeScreen();
-    buildQuiz();
+
+    nextQuestion();
+
     startTimer();
 }
 
@@ -91,26 +93,25 @@ function toggleWelcomeScreen() {
     welcomeScreenSection.style.display = welcomeScreenDisplay == "none" ? "block" : "none";
 }
 
-function buildQuiz() {
-    // do {
-        choicesElement.innerHTML = "";
+function nextQuestion() {
+    choicesElement.innerHTML = "";
 
-        var quiz = quizzes[questionNo];
-        var questionLabel = "Q" + (questionNo + 1) + ": " + quiz.question;
-        questionElement.textContent = questionLabel;
+    var quiz = quizzes[questionNo];
+    var questionLabel = "Q" + (questionNo + 1) + ": " + quiz.question;
+    questionElement.textContent = questionLabel;
 
-        var questionUl = document.createElement("ul");
-        choicesElement.appendChild(questionUl);
-        for(var i = 0; i < quiz.choices.length; i++) {
-            var li = document.createElement("li");
-            choicesElement.appendChild(li);
+    var questionUl = document.createElement("ul");
+    choicesElement.appendChild(questionUl);
+    for(var i = 0; i < quiz.choices.length; i++) {
+        var li = document.createElement("li");
+        choicesElement.appendChild(li);
 
-            var answerButton = document.createElement("button");
-            answerButton.textContent = quiz.choices[i];
-            li.appendChild(answerButton);
+        var answerButton = document.createElement("button");
+        answerButton.textContent = quiz.choices[i];
+        li.appendChild(answerButton);
 
-            answerButton.addEventListener("click", checkAnswer);
-        }
+        answerButton.addEventListener("click", checkAnswer);
+    }
 }
 
 function checkAnswer(event) {
@@ -128,7 +129,7 @@ function checkAnswer(event) {
         //display score screen
     } else {
         questionNo++;
-        buildQuiz();
+        nextQuestion();
     }
 }
 
