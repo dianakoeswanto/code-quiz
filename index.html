@@ -12,7 +12,7 @@
       <body>
         <header>
             <div>View Highscores</div>
-            <div>Timer: <span id="clock">60</span></div>
+            <div>Timer: <span id="clock"></span></div>
         </header>
 
         <section>
@@ -25,9 +25,15 @@
             <div id="quiz">
                 <div id="label" class="question"></div>
                 <div class="answers"></div>
+                <div id="result"></div>
             </div>
 
-            <div id="result"></div>
+            <div id="done-screen">
+                <div id="label">Your Score: <span id="score"></span></div>
+                <label for="initials">Enter your initials:</label>
+                <input type="text" id="initials" name="initials">
+                <button id="submit-button">Submit Highscore</button>
+            </div>
         </section>
 
         <script src="./assets/js/script.js"></script>

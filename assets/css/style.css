@@ -31,3 +31,6 @@ li {
     border-bottom-width: 0.5px;
 }
 
+#done-screen {
+    display: none;
+}

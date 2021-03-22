@@ -7,9 +7,10 @@ var resultElement = document.querySelector("#result");
 var clockElement = document.querySelector("#clock");
 
 var questionNo = 0;
-var score = 0;
 
 var interval;
+var timeLeft = 60;
+var timePenalty = 10;
 
 var quizzes = [
     {
@@ -72,20 +73,22 @@ function startQuiz() {
 }
 
 function startTimer() {
-    var timeleft = 60;
-    
     interval = setInterval(function(){
-    timeleft--;
-
-    clockElement.textContent = timeleft;
+        timeLeft--;
+        clockElement.textContent = timeLeft;
     
-    if(timeleft <= 0)
-        stopTimer();
-    },1000);
+        if(timeLeft <= 0)
+            stopTimer();
+    }, 1000) ;
 }
 
 function stopTimer() {
     clearInterval(interval);
+}
+
+function reduceTimer() {
+    timeLeft = timeLeft - timePenalty;
+    clockElement.textContent = timeLeft;
 }
 
 function toggleWelcomeScreen() {
@@ -94,6 +97,8 @@ function toggleWelcomeScreen() {
 }
 
 function nextQuestion() {
+    quizSection.style.display = "block";
+
     choicesElement.innerHTML = "";
 
     var quiz = quizzes[questionNo];
@@ -117,22 +122,31 @@ function nextQuestion() {
 function checkAnswer(event) {
 
     if(event.target.textContent == quizzes[questionNo].answer) {
-        score++;
         resultElement.textContent = "Q" + (questionNo + 1) + ": correct";
     } else {
-        // reduceTimer();
+        reduceTimer();
         resultElement.textContent = "Q" + (questionNo + 1) + ": wrong!";
     }
 
     if(questionNo == quizzes.length - 1) {
         stopTimer();
-        //display score screen
+        displayScore();
+        
     } else {
         questionNo++;
         nextQuestion();
     }
 }
 
+function displayScore() {
+    var clockElement = document.querySelector("#score");
+    clockElement.innerHTML = timeLeft;
 
+    var scoreScreenElement = document.querySelector("#done-screen");
+    scoreScreenElement.style.display = 'block';
 
+    quizSection.style.display = "none";
+}
+
+clockElement.textContent = timeLeft
 startButton.addEventListener("click", startQuiz);
