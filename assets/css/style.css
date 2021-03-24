@@ -36,10 +36,7 @@ button {
     display: none;
 }
 
-/**
- * CSS for highscores
- */
-
+/** CSS for highscores */
 ol {
     padding-left: 15px;
 }

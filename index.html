@@ -10,18 +10,23 @@
       </head>
 
       <body>
+        <!-- Top header -->
         <header>
-            <div>View Highscores</div>
+            <div><a href="#" id="view-highscore">View Highscores</a></div>
             <div>Timer: <span id="clock"></span></div>
         </header>
 
-        <section id="main">
-            <div id="welcome-screen">
+        <!-- Welcome Screen -->
+        <section id="welcome-screen">
+            <div>
                 <div id="label">Coding Quiz Challenge</div>
                 <div id="content">Try to answer the following questions within the time limit. Incorrect answers will reduce 10 secs on the clock.</div>
                 <button id="start-button">Start Quiz</button>
             </div>
+        </section>
 
+        <!-- Quiz section -->
+        <section id="main">
             <div id="quiz">
                 <div id="label" class="question"></div>
                 <div class="answers"></div>
@@ -36,6 +41,7 @@
             </div>
         </section>
 
+        <!-- Highscore section -->
         <section id="highscore">
             <div id="label">Highscores</div>
             <div id="score-list"></div>
