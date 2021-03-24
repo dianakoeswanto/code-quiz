@@ -5,6 +5,12 @@ var questionElement = document.querySelector(".question");
 var choicesElement = document.querySelector(".answers");
 var resultElement = document.querySelector("#result");
 var clockElement = document.querySelector("#clock");
+var submitButton = document.querySelector("#submit-button");
+var highscoreListEl = document.querySelector("#score-list");
+var highscoreSection = document.querySelector("#highscore");
+var mainSection = document.querySelector("#main");
+var backtoGameButton = document.querySelector("#back-to-game-button");
+var clearHighscoreButton = document.querySelector("#clear-highscores-button");
 
 var questionNo = 0;
 
@@ -148,5 +154,58 @@ function displayScore() {
     quizSection.style.display = "none";
 }
 
-clockElement.textContent = timeLeft
-startButton.addEventListener("click", startQuiz);
+function submitScore() {
+    var initial = document.querySelector("#initials");
+    window.localStorage.setItem(initial.value, timeLeft);
+
+    initial.value = '';
+    showHighScoreList();
+}
+
+function showHighScoreList() {
+    highscoreSection.style.display = "block";
+    mainSection.style.display = "none";
+
+    const sortableLocalStorage = Object.fromEntries(
+        Object.entries(localStorage).sort(([,a],[,b]) => b-a)
+    );
+    
+    var orderedScoreList = document.createElement("ol");
+    for(var key in sortableLocalStorage) {
+        var scoreLiEl = document.createElement("li");
+        scoreLiEl.textContent = key + " - " + sortableLocalStorage[key];
+
+        orderedScoreList.appendChild(scoreLiEl);
+    }
+  
+    highscoreListEl.innerHTML = orderedScoreList.outerHTML;
+}
+
+function resetScreen() {
+    questionNo = 0;
+    timeLeft = 60;
+    clockElement.textContent = timeLeft
+    
+    mainSection.style.display = "block";
+    welcomeScreenSection.style.display = "block";
+    quizSection.style.display = "none";
+    highscoreSection.style.display = "none";
+    document.querySelector("#done-screen").style.display = "none";
+}
+
+function clearLocalStorage() {
+    localStorage.clear();
+
+    showHighScoreList();
+}
+
+function init() {
+    resetScreen();
+    startButton.addEventListener("click", startQuiz);
+    submitButton.addEventListener("click", submitScore);
+    backtoGameButton.addEventListener("click", resetScreen);
+    clearHighscoreButton.addEventListener("click", clearLocalStorage);
+}
+
+init();
+// showHighScoreList();

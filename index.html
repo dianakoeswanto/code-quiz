@@ -15,7 +15,7 @@
             <div>Timer: <span id="clock"></span></div>
         </header>
 
-        <section>
+        <section id="main">
             <div id="welcome-screen">
                 <div id="label">Coding Quiz Challenge</div>
                 <div id="content">Try to answer the following questions within the time limit. Incorrect answers will reduce 10 secs on the clock.</div>
@@ -34,6 +34,12 @@
                 <input type="text" id="initials" name="initials">
                 <button id="submit-button">Submit Highscore</button>
             </div>
+        </section>
+
+        <section id="highscore">
+            <div id="label">Highscores</div>
+            <div id="score-list"></div>
+            <button id="back-to-game-button">Back to Game</button><button id="clear-highscores-button">Clear Highscores</button>
         </section>
 
         <script src="./assets/js/script.js"></script>
